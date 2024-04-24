@@ -117,13 +117,13 @@ tipo =0
 
 i=1
 while(i< length(df$Date)){
-  if(df$tipo[i]!=5){
+  if(df$tipo[i]!=10){
     df$evento_acc[i] =0
     i=i+1
   }
-  if(df$tipo[i]==5){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+  if(df$tipo[i]==10){
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -132,8 +132,8 @@ while(i< length(df$Date)){
       df$evento_acc[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
-      if(df$tipo[j] == 5){
+    for(j in k:(k-9)){
+      if(df$tipo[j] == 10){
         encontro = TRUE
         i = j
       }
@@ -143,10 +143,10 @@ while(i< length(df$Date)){
       else{
         df$evento_acc[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_acc = eventos_acc +1
@@ -158,13 +158,13 @@ while(i< length(df$Date)){
 
 i=1
 while(i< length(df$Date)){
-  if(df$tipo[i]!=2){
+  if(df$tipo[i]!=10){
     df$evento_svol[i] =0
     i=i+1
   }
   if(df$tipo[i]==2){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -173,7 +173,7 @@ while(i< length(df$Date)){
       df$evento_svol[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 2){
         encontro = TRUE
         i = j
@@ -184,10 +184,10 @@ while(i< length(df$Date)){
       else{
         df$evento_svol[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_svol = eventos_svol +1
@@ -204,8 +204,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==1){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -214,7 +214,7 @@ while(i< length(df$Date)){
       df$evento_desacc[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 1){
         encontro = TRUE
         i = j
@@ -225,10 +225,10 @@ while(i< length(df$Date)){
       else{
         df$evento_desacc[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_desacc = eventos_desacc +1
@@ -245,8 +245,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==4){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -255,7 +255,7 @@ while(i< length(df$Date)){
       df$evento_discr[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 4){
         encontro = TRUE
         i = j
@@ -266,10 +266,10 @@ while(i< length(df$Date)){
       else{
         df$evento_discr[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_discr =eventos_discr +1
@@ -287,8 +287,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==6){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -297,7 +297,7 @@ while(i< length(df$Date)){
       df$evento_pvol[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 6){
         encontro = TRUE
         i = j
@@ -308,10 +308,10 @@ while(i< length(df$Date)){
       else{
         df$evento_pvol[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_pvol =eventos_pvol +1
@@ -328,8 +328,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==7){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -338,7 +338,7 @@ while(i< length(df$Date)){
       df$evento_forwards[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 7){
         encontro = TRUE
         i = j
@@ -349,10 +349,10 @@ while(i< length(df$Date)){
       else{
         df$evento_forwards[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_acc = eventos_acc +1
@@ -369,8 +369,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==8){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -379,7 +379,7 @@ while(i< length(df$Date)){
       df$evento_swaps_compra[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 8){
         encontro = TRUE
         i = j
@@ -390,10 +390,10 @@ while(i< length(df$Date)){
       else{
         df$evento_swaps_compra[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_acc = eventos_acc +1
@@ -410,8 +410,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==9){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -420,7 +420,7 @@ while(i< length(df$Date)){
       df$evento_swaps_venta[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 9){
         encontro = TRUE
         i = j
@@ -431,10 +431,10 @@ while(i< length(df$Date)){
       else{
         df$evento_swaps_venta[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_acc = eventos_acc +1
@@ -451,8 +451,8 @@ while(i< length(df$Date)){
     i=i+1
   }
   if(df$tipo[i]==3){
-    if(i+2 <=length(df$Date)){
-      k=i+2
+    if(i+10 <=length(df$Date)){
+      k=i+10
     }
     else{
       k = length(df$Date)
@@ -461,7 +461,7 @@ while(i< length(df$Date)){
       df$evento_directas[i] = total_eventos
     }
     encontro =FALSE
-    for(j in k:(k-1)){
+    for(j in k:(k-9)){
       if(df$tipo[j] == 3){
         encontro = TRUE
         i = j
@@ -472,10 +472,10 @@ while(i< length(df$Date)){
       else{
         df$evento_directas[j] = 0
       }
-      if(j == k-1 && encontro){
+      if(j == k-9 && encontro){
         
       }
-      else if(j == k-1 && !encontro){
+      else if(j == k-9 && !encontro){
         i = k
         total_eventos = total_eventos+1
         eventos_acc = eventos_acc +1
@@ -1094,13 +1094,7 @@ eventos$Tipo[eventos$Id_Tipo==1] <- "Calls (IR decumulation)"
 
 eventos <- eventos %>% arrange(Fecha_Inicial)
 
-#write.xlsx(eventos, file = paste(path,"\\2._ProcessedData\\eventos_w2.xlsx", sep=""), colNames = TRUE)
-
-
-#DE LA LINEA 492 PARA ABAJO, CORRESPONDE AL _W10
-
-
-
+write.xlsx(eventos, file = paste(path,"\\2._ProcessedData\\eventos_w10.xlsx", sep=""), colNames = TRUE)
 
 # # ---------------------------------------------------------------------------- #
 # # Exclude announced interventions and day-to-day constant
