@@ -49,15 +49,18 @@ library(dplyr)
 # Data Import 
 # ---------------------------------------------------------------------------- #
 
-path  <- "C:\\Users\\Nicolas\\OneDrive - Universidad de los andes\\UNIVERSIDAD\\7. SEPTIMO SEMESTRE\\MACRO DESDE LA BANCA CENTRAL\\PROYECTO"
+#path  <- "C:\\Users\\Nicolas\\OneDrive - Universidad de los andes\\UNIVERSIDAD\\7. SEPTIMO SEMESTRE\\MACRO DESDE LA BANCA CENTRAL\\PROYECTO"
+path <- "C:\\Users\\Lenovo\\OneDrive - Universidad de los Andes\\Septimo Semestre\\HE BC\\Edmundo Andres Arias De Abreu\\HE2 – Talleres\\Proyecto\\FX-Intervention"
 
-df <- read_dta(paste(path,"\\Exchange-Rate-Intervention\\8._ControlSynt\\FX\\processed\\Base_sin_embi.dta", sep=""))
-
+#df <- read_dta(paste(path,"\\Exchange-Rate-Intervention\\8._ControlSynt\\FX\\processed\\Base_sin_embi.dta", sep=""))
+df <- read_dta(paste(path,"\\8._ControlSynt\\FX\\processed\\Base_sin_embi.dta", sep=""))
 df$Date <- as.Date(df$f)
 
 df$f  <- NULL
 
-intervenciones <- read_excel(paste(path,"\\Exchange-Rate-Intervention\\2._ProcessedData\\Panel.xlsx", sep=""), col_types = c("date", "numeric", "text", "numeric", "numeric", "numeric"))
+#intervenciones <- read_excel(paste(path,"\\Exchange-Rate-Intervention\\2._ProcessedData\\Panel.xlsx", sep=""), col_types = c("date", "numeric", "text", "numeric", "numeric", "numeric"))
+intervenciones <- read_excel(paste(path,"\\2._ProcessedData\\Panel.xlsx", sep=""), col_types = c("date", "numeric", "text", "numeric", "numeric", "numeric"))
+
 
 intervenciones$Type[is.na(intervenciones$Type)] <- "No hubo intervencion"
 
@@ -101,4 +104,5 @@ df <- merge(df, cambios_porcentuales, by = "Date")
 
 df <- merge(intervenciones, df, by = "Date")
 
-write.xlsx(df, file = paste(path,"\\Exchange-Rate-Intervention\\8._ControlSynt\\FX\\processed\\Control_Synth.xlsx", sep=""), colNames = TRUE)
+#write.xlsx(df, file = paste(path,"\\Exchange-Rate-Intervention\\8._ControlSynt\\FX\\processed\\Control_Synth.xlsx", sep=""), colNames = TRUE)
+write.xlsx(df, file = paste(path,"\\8._ControlSynt\\FX\\processed\\Control_Synth.xlsx", sep=""), colNames = TRUE)
