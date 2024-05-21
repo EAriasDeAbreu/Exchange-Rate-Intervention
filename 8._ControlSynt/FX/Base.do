@@ -27,6 +27,12 @@ save "processed/x.dta", replace
 
 clear
 
+import excel using "data/PI.xlsx", sheet("Hoja1") cellrange("A1:V82") first
+tsset f
+save "processed/pi.dta", replace
+
+clear
+
 
 import excel using "data/M.xlsx", sheet("Hoja1") cellrange("A1:U244") first
 tsset f
@@ -34,7 +40,7 @@ save "processed/m.dta", replace
 
 clear
 
-import excel using "data/TC.xlsx", sheet("Hoja1") cellrange("A1:U7397") first
+import excel using "data/TC.xlsx", sheet("Hoja1") cellrange("A1:V7397") first
 
 
 gen AUS_t = 1/AUS_tc
@@ -50,13 +56,15 @@ merge 1:m f using "processed/ovn.dta", nogenerate
 
 merge 1:m f using "processed/tpm.dta", nogenerate
 
+merge 1:m f using "processed/pi.dta", nogenerate
+
 tsset f
 
 gen n = _n
 
 destring COL_ov CHI_m     RUS_m     IND_x     TAI_x     RUS_ov    BRA_tpm   NZL_tpm COL_m     SIN_m     INDO_x    IND_ov    BRA_ov    CAN_tpm   POL_tpm CZC_m     SUD_m     KOR_x     INDO_ov   CHI_ov    CHI_tpm   CZC_tpm HUN_m     SUE_m     MAL_x     MAL_ov      COL_tpm   RUS_tpm IND_m     TAI_m  MEX_x     SIN_ov    MEX_ov    KOR_tpm   SIN_tpm INDO_m    AUS_x     NZL_x     KOR_ov    URU_ov    USA_tpm   SUD_tpm KOR_m     BRA_x     NOR_x     TAI_ov    SUD_ov    HUN_tpm   SUE_tpm MAL_m     CAN_x POL_x     AUS_ov    CAN_ov    IND_tpm   TAI_tpm MEX_m     CHI_x     RUS_x     NZL_ov    NOR_ov    INDO_tpm  URU_tpm AUS_m     NZL_m     COL_x     SIN_x     CZC_ov    SUE_ov    MAL_tpm   trim_tpm  BRA_m     NOR_m     CZC_x     SUD_x     HUN_ov        MEX_tpm     CAN_m     POL_m     HUN_x     SUE_x     POL_ov    AUS_tpm   NOR_tpm, replace force
 
-foreach j in COL_ov CHI_m     RUS_m     IND_x     TAI_x     RUS_ov    BRA_tpm   NZL_tpm COL_m     SIN_m     INDO_x    IND_ov    BRA_ov    CAN_tpm   POL_tpm CZC_m     SUD_m     KOR_x     INDO_ov   CHI_ov    CHI_tpm   CZC_tpm HUN_m     SUE_m     MAL_x     MAL_ov      COL_tpm   RUS_tpm IND_m     TAI_m  MEX_x     SIN_ov    MEX_ov    KOR_tpm   SIN_tpm INDO_m    AUS_x     NZL_x     KOR_ov    URU_ov    USA_tpm   SUD_tpm KOR_m     BRA_x     NOR_x     TAI_ov    SUD_ov    HUN_tpm   SUE_tpm MAL_m     CAN_x POL_x     AUS_ov    CAN_ov    IND_tpm   TAI_tpm MEX_m     CHI_x     RUS_x     NZL_ov    NOR_ov    INDO_tpm  URU_tpm AUS_m     NZL_m     COL_x     SIN_x     CZC_ov    SUE_ov    MAL_tpm   trim_tpm  BRA_m     NOR_m     CZC_x     SUD_x     HUN_ov        MEX_tpm     CAN_m     POL_m     HUN_x     SUE_x     POL_ov    AUS_tpm   NOR_tpm{
+foreach j in COL_ov CHI_m     RUS_m     IND_x     TAI_x     RUS_ov    BRA_tpm   NZL_tpm COL_m     SIN_m     INDO_x    IND_ov    BRA_ov    CAN_tpm   POL_tpm CZC_m     SUD_m     KOR_x     INDO_ov   CHI_ov    CHI_tpm   CZC_tpm HUN_m     SUE_m     MAL_x     MAL_ov      COL_tpm   RUS_tpm IND_m     TAI_m  MEX_x     SIN_ov    MEX_ov    KOR_tpm   SIN_tpm INDO_m    AUS_x     NZL_x     KOR_ov    URU_ov    USA_tpm   SUD_tpm KOR_m     BRA_x     NOR_x     TAI_ov    SUD_ov    HUN_tpm   SUE_tpm MAL_m     CAN_x POL_x     AUS_ov    CAN_ov    IND_tpm   TAI_tpm MEX_m     CHI_x     RUS_x     NZL_ov    NOR_ov    INDO_tpm  URU_tpm AUS_m     NZL_m     COL_x     SIN_x     CZC_ov    SUE_ov    MAL_tpm   trim_tpm  BRA_m     NOR_m     CZC_x     SUD_x     HUN_ov        MEX_tpm     CAN_m     POL_m     HUN_x     SUE_x     POL_ov    AUS_tpm   NOR_tpm AUS_pi	BRA_pi	CAN_pi	CHI_pi	COL_pi	KOR_pi	HUN_pi	IND_pi	INDO_pi	MAL_pi	MEX_pi	NOR_pi	NZL_pi	POL_pi	CZC_pi	RUS_pi	SIN_pi	SUD_pi	SUE_pi	TAI_pi	URU_pi{
 	
 
 
