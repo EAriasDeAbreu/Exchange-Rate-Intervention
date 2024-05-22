@@ -9,7 +9,7 @@ cls
 clear all
 set more off
 
-cd "C:\Users\Lenovo\OneDrive - Universidad de los Andes\Septimo Semestre\HE BC\Edmundo Andres Arias De Abreu\HE2 – Talleres\Proyecto\FX-Intervention\8._Extension Final\2._ProcessedData\Long"
+cd "C:\Users\Nicolas\OneDrive - Universidad de los andes\UNIVERSIDAD\7. SEPTIMO SEMESTRE\MACRO DESDE LA BANCA CENTRAL\PROYECTO\Exchange-Rate-Intervention\8._Extension Final\2._ProcessedData\Long"
 
 
 use "long_imputed_interv.dta"
@@ -671,8 +671,12 @@ sum res_pur,d
 sca ar = r(p95)
 sca ab = r(p5)
 sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
 
-display ar ab med
+display "RES PURCH"
+display med " " sd " " t " " obs
 
 
 
@@ -680,7 +684,13 @@ display ar ab med
 
 *drop if mon_d_res_pur <= 40
 
-tw kdensity res_pur, title("International reserves acummulation options") lc(gs2) xtitle("SC effects distribution") xline(0.34, lc(stred)) xline(-0.64, lc(stred)) xline(-0.15, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
+twoway (kdensity res_pur, lcolor(black) xline(0.34, lc(stred)) xline(-0.64, lc(stred)) xline(-0.15, lc(stblue)) lc(gs2)) || ///
+       (function y=0, range(0.036 0.036) lcolor(stblue)) || ///
+	   (function y=0, range(0.036 0.036) lcolor(stred)), ///
+       legend(order(1 "Density" 2 "Mean" 3 "CI 95%")) ///
+	   title("International reserves acummulation options") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("Density")
 graph export "graficas/res_pur_t.png", replace
 
 *restore
@@ -691,49 +701,134 @@ sum res_sal,d
 sca ar = r(p95)
 sca ab = r(p5)
 sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
 
-display ar ab med
+display "RES SALE"
+display med " " sd " " t " " obs
 
-kdensity res_sal, title("International reserves decummulation options") lc(gs2) xtitle("SC effects distribution") xline(0.31, lc(stred)) xline(-0.07, lc(stred)) xline(0.1257, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
+twoway (kdensity res_sal, range(-0.1 0.35) lcolor(black) xline(0.31, lc(stred)) xline(-0.07, lc(stred)) xline(0.1257, lc(stblue)) lc(gs2)) || ///
+       (function y=1, range(-0.07 -0.07) lcolor(stblue)) || ///
+	   (function y=1, range(0.01257 0.01257) lcolor(stred)), ///
+       legend(order(1 "Density" 2 "Mean" 3 "CI 95%")) ///
+	   title("International reserves decummulation options") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("Density")
 graph export "graficas/res_sal_t.png", replace
-
 
 sum disc,d
 
 sca ar = r(p95)
 sca ab = r(p5)
 sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
 
-display ar ab med
+display "RES DISC ALL"
+display med " " sd " " t " " obs
 
-
-kdensity disc, title("Discretionary interventions dollars purchases") lc(gs2) xtitle("SC effects distribution") xline(0.036, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
+twoway (kdensity disc, range(-0.2 0.45) lcolor(black) xline(0.036, lcolor(stblue)) lc(gs2)) || ///
+       (function y=0, range(0.036 0.036) lcolor(stblue)), ///
+       legend(order(1 "Density" 2 "Mean")) ///
+	   title("Discretionary interventions dollars purchases") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("density")
 graph export "graficas/disc_t.png", replace
 
+sum vol_pur,d
 
+sca ar = r(p95)
+sca ab = r(p5)
+sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
 
-kdensity vol_pur, title("Volatility options dollars purchases") lc(gs2) xtitle("SC effects distribution") xline(0.79, lc(stred)) xline(-0.71, lc(stred)) xline(0.036, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
+display "VOL PURCH"
+display med " " sd " " t " " obs
+
+twoway (kdensity vol_pur, range(-1 1.5) lcolor(black) xline(0.79, lc(stred)) xline(-0.71, lc(stred)) xline(0.036, lc(stblue)) lc(gs2)) || ///
+       (function y=1, range(-0.07 -0.07) lcolor(stblue)) || ///
+	   (function y=1, range(0.01257 0.01257) lcolor(stred)), ///
+       legend(order(1 "Density" 2 "Mean" 3 "CI 95%")) ///
+	   title("Volatility options dollars purchases") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("Density")
 graph export "graficas/vol_pur_t.png", replace
 
+sum vol_sal,d
 
-kdensity vol_sal, title("Volatility options dollars sales") lc(gs2) xtitle("SC effects distribution") xline(1.58, lc(stred)) xline(-0.96, lc(stred)) xline(0.31, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
-graph export "graficas/vol_pur_t.png", replace
+sca ar = r(p95)
+sca ab = r(p5)
+sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
+
+display "VOL SAL"
+display med " " sd " " t " " obs
+
+twoway (kdensity vol_sal, range(-1 3) lcolor(black) xline(1.58, lc(stred)) xline(-0.96, lc(stred)) xline(0.31, lc(stblue)) lc(gs2)) || ///
+       (function y=1, range(-0.07 -0.07) lcolor(stblue)) || ///
+	   (function y=1, range(0.01257 0.01257) lcolor(stred)), ///
+       legend(order(1 "Density" 2 "Mean" 3 "CI 95%")) ///
+	   title("Volatility options dollars sales") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("Density")
+graph export "graficas/vol_sal_t.png", replace
 
 preserve
 drop if mon_d_vol_garch <= 10
 sum vol_garch ,d
-kdensity vol_garch, title("Volatility options effects on volatility measured with GARCH") lc(gs2) xtitle("SC effects distribution") xline(1.08, lc(stred)) xline(-232627, lc(stred)) xline(-79212, lc(stblue)) xlabel(,nogrid) ylabel(,nogrid) ytitle("density")
+twoway (kdensity vol_garch, range(-400000 80000) lcolor(black) xline(-79212, lc(stblue)) lc(gs2)) || ///
+       (function y=0, range(-232627 -232627) lcolor(stblue)), ///
+       legend(order(1 "Density" 2 "Mean")) ///
+	   title("Volatility options effects on volatility measured with GARCH") ///
+	   xtitle("SC effects distribution") xlabel(,nogrid) ///
+	   ylabel(,nogrid) ytitle("Density")
 graph export "graficas/vol_garch.png", replace
+
+sum vol_garch,d
+
+sca ar = r(p95)
+sca ab = r(p5)
+sca med = r(mean)
+sca sd = r(sd)
+sca obs = r(N)
+sca t = med/(sd/sqrt(obs))
+
+display "VOL GARCH"
+display med " " sd " " t " " obs
+
 restore
 
 
-
-
-
-
 preserve
-*drop if mon_d_disc <= 30
-kdensity disc 
+
+	drop if mon_d_disc <= 30
+
+	twoway (kdensity disc, range(-0.2 0.45) lcolor(black) xline(0.036, lcolor(stblue)) lc(gs2)) || ///
+		   (function y=0, range(0.036 0.036) lcolor(stblue)), ///
+		   legend(order(1 "Density" 2 "Mean")) ///
+		   title("Discretionary interventions dollars purchases") ///
+		   xtitle("SC effects distribution") xlabel(,nogrid) ///
+		   ylabel(,nogrid) ytitle("density")
+	graph export "graficas/disc_t2.png", replace
+
+	sum disc,d
+
+	sca ar = r(p95)
+	sca ab = r(p5)
+	sca med = r(mean)
+	sca sd = r(sd)
+	sca obs = r(N)
+	sca t = med/(sd/sqrt(obs))
+
+	display "RES DISC FIL"
+	display med " " sd " " t " " obs
+
 restore
 
 preserve
